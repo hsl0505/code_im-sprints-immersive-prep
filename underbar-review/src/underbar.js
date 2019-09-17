@@ -39,7 +39,7 @@ _.last = function(array, n) {
     return array[array.length-1];
   }
   else if(array.length > n ){
-    return array.slice(array.length - n, n)
+    return array.slice(array.length - n)
   }
   else
   {
@@ -77,6 +77,15 @@ _.uniq = function(array) {
 
 // Return the results of applying an iterator to each element.
 _.map = function(collection, iterator) {
+  
+  let reArr = [];
+  
+  for(let i=0; i<collection.length; i++){
+
+    reArr.push(iterator(collection[i]));
+
+  }
+  return reArr;
   // map() is a useful primitive iteration function that works a lot
   // like each(), but in addition to running the operation on all
   // the members, it also maintains an array of results.
@@ -92,6 +101,13 @@ _.map = function(collection, iterator) {
 // a certain property in it. E.g. take an array of people and return
 // an array of just their ages
 _.pluck = function(collection, key) {
+
+  let reArr = _.map(collection, function(item){
+    return item[key];
+  })
+
+  return reArr;
+
   // TIP: map is really handy when you want to transform an array of
   // values into a new array of values. _.pluck() is solved for you
   // as an example of this.
@@ -117,10 +133,34 @@ _.pluck = function(collection, key) {
 //     return total + number * number;
 //   }); // should be 5, regardless of the iterator function passed in
 //          No accumulator is given so the first element is used.
-_.reduce = function(collection, iterator, accumulator) {};
+_.reduce = function(collection, iterator, accumulator) {
+  if(accumulator===undefined){
+    accumulator = collection[0];
+    for(let i = 1; i<collection.length; i++){
+      accumulator = iterator(accumulator, collection[i]);
+    }
+  }
+  else{
+    for(let i = 0; i<collection.length; i++){
+      accumulator = iterator(accumulator, collection[i]);
+    }
+  }
+  return accumulator;
+};
 
 // Determine if the array or object contains a given value (using `===`).
 _.contains = function(collection, target) {
+  if(Array.isArray(collection)){
+    return collection.includes(target);
+  }
+  else if((!Array.isArray(collection)) && (typeof collection === 'object') ){
+    for(let i in collection){
+      if(collection[i] === target){
+        return true;
+      }
+    }
+    return false;
+  }
 };
 
 // Determine whether all of the elements match a predicate truth test.
