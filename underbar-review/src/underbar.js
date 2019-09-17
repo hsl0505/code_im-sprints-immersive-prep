@@ -167,6 +167,14 @@ _.contains = function(collection, target) {
 // _.every([2, 4, 5], function(num) {return num % 2 == 0})
 // => false
 _.every = function(collection, predicate) {
+  if(predicate === undefined){
+    for(let i = 0; i < collection.length;i++){
+      if(!collection[i]){
+        return false;
+      }
+    }
+    return true;
+  }
   let result = true;
   for(let i =0; i < collection.length; i++){
     if(!predicate(collection[i])){
@@ -181,6 +189,10 @@ _.every = function(collection, predicate) {
 // Determine whether any of the elements pass a truth test. If no iterator is
 // provided, provide a default one
 _.some = function(collection, iterator) {
+  let result = _.every(collection, function (item){
+    return !iterator(item);
+  })
+  return !result;
   // TIP: There's a very clever way to re-use every() here.
 };
 
