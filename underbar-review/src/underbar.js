@@ -262,6 +262,15 @@ _.once = function(func) {
 // already computed the result for the given argument and return that value
 // instead if possible.
 _.memoize = function(func) {
+  let obj;
+  let result = func(arguments);
+  return function() {
+    for(let i =0 ;i < result.length; i++){
+      obj += result[i]
+
+    }
+    return result;
+  }
 };
 
 // Delays a function for the given number of milliseconds, and then calls
@@ -284,6 +293,17 @@ _.delay = function(func, wait) {
 // input array. For a tip on how to make a copy of an array, see:
 // http://mdn.io/Array.prototype.slice
 _.shuffle = function(array) {
+  let result = [...array];
+    let nums;
+    for(let i = 0; i < array.length; i++){
+      let j = Math.floor(Math.random() * (i + 1));
+      nums = result[i];
+      result[i] = result[j];
+      result[j] = nums;
+     
+      
+    }
+    return result;
 };
 
 module.exports = _;
