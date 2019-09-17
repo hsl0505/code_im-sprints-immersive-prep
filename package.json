@@ -13,7 +13,6 @@
     "submit-test": "jest --json --outputFile=result.json",
     "check": "node .airci/submit.js",
     "submit": "npm-run-all -c -s --silent submit-test check"
-
   },
   "keywords": [
     "linter",
@@ -24,5 +23,6 @@
   "author": "codesatates",
   "dependencies": {},
   "devDependencies": {
+    "jest": "^24.9.0"
   }
 }
