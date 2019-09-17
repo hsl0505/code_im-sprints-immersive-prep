@@ -3,7 +3,9 @@ const _ = {};
 // Returns whatever value is passed as the argument. This function doesn't
 // seem very useful, but remember it--if a function needs to provide an
 // iterator when the user does not pass one in, this will be handy.
-_.identity = function(val) { };
+_.identity = function(val) { 
+  return val;
+ };
 
 /**
  * COLLECTIONS
@@ -33,16 +35,44 @@ _.first = function(array, n) {
 // Like first, but for the last elements. If n is undefined, return just the
 // last element.
 _.last = function(array, n) {
+  if(n === undefined){
+    return array[array.length-1];
+  }
+  else if(array.length > n ){
+    return array.slice(array.length - n, n)
+  }
+  else
+  {
+    return array;
+  }
 };
+// [1, 2, 3, 4, 5] n = 2;
 
 // Return all elements of an array that don't pass a truth test.
 _.reject = function(collection, test) {
   // TIP: see if you can re-use _.filter() here, without simply
   // copying code in and modifying it
+  let result = [];
+  for(let i = 0; i < collection.length; i++){
+    if(!test(collection[i])){
+      result.push(collection[i]);
+    }
+  }
+  return result;
 };
+
+//[1, 2, 3, 4, 5] test = function (a) { reutrn a % === 0}
+//
 
 // Produce a duplicate-free version of the array.
 _.uniq = function(array) {
+  let result = [];
+  for(let i = 0; i < array.length; i++){
+    if(result.indexOf(array[i]) === -1){
+      result.push(array[i])
+    }
+  }
+  return result;
 };
 
 // Return the results of applying an iterator to each element.
