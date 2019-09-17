@@ -82,7 +82,7 @@ describe("Underbar Review", function() {
 
   describe("map", function() {
     it("should apply a function to every value in an array", function() {
-      var multiplyByTwo = function(val){
+      var multiplyByTwo = function( val ){
         return val * 2;
       };
 
@@ -95,15 +95,17 @@ describe("Underbar Review", function() {
         return num;
       });
 
-      expect(mappedNumbers).not.toEqual(numbers);
+      expect(mappedNumbers).not.toBe(numbers);
     });
   });
+
+  
 
   describe("pluck", function() {
     it("should return values contained at a user-defined property", function() {
       var people = [{ name: "moe", age: 30 }, { name: "curly", age: 50 }];
 
-      expect(_.pluck(people, "name")).to.FILL_ME_IN(["moe", "curly"]);
+      expect(_.pluck(people, "name")).toEqual(["moe", "curly"]);
     });
 
     it("should not modify the original array", function() {
@@ -111,7 +113,7 @@ describe("Underbar Review", function() {
 
       _.pluck(people, "name");
 
-      expect(people).to.FILL_ME_IN([
+      expect(people).not.toBe([
         { name: "moe", age: 30 },
         { name: "curly", age: 50 }
       ]);
@@ -208,7 +210,10 @@ describe("Underbar Review", function() {
     it("should return false given an array and a value not in that array", function() {
       // Replace this line with an `expect` statement that tests
       // the behavior described by the `it` string
-      throw new Error("This test is missing.");
+      var array = [1,2,3];
+      var value = 4
+      expect(_.contains(array, value)).toBeFalsy();
+      //throw new Error("This test is missing.");
     });
 
     it("should return true given a object and a value from that object", function() {
