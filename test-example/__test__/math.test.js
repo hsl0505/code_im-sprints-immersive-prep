@@ -14,3 +14,6 @@ const { add, substract, multiply, divide } = require("../math");
 // when it tries to divdie a number with zero.
 
 // 6. Group tests using `describe()`
+test('adds 2 - 1 to equal 1', ()=>{
+    expect(add(2,1)).toBe(1);
+})

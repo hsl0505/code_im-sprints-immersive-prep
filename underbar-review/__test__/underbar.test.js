@@ -17,7 +17,7 @@ describe("Underbar Review", function() {
     });
 
     it("should accept an index argument", function() {
-      expect(_.last([1, 2, 3], 2)).toEqual(`FILL_ME_IN`);
+      expect(_.last([1, 2, 3], 2)).toEqual([2,3]);
     });
 
     it("should return empty array if zero is passed in as the index", function() {
@@ -25,7 +25,7 @@ describe("Underbar Review", function() {
     });
 
     it("should return all the array's elements if the index argument is larger than the length of the array", function() {
-      expect(_.last([1, 2, 3], 5)).toEqual(`FILL_ME_IN`);
+      expect(_.last([1, 2, 3], 5)).toEqual([1,2,3]);
     });
   });
 
@@ -69,7 +69,7 @@ describe("Underbar Review", function() {
     it("should return all unique values contained in an sorted array", function() {
       var numbers = [1, 2, 2, 3, 4, 4];
 
-      expect(_.uniq(`FILL_ME_IN`)).toEqual([1, 2, 3, 4]);
+      expect(_.uniq(numbers)).toEqual([1, 2, 3, 4]);
     });
 
     it("should produce a brand new array instead of modifying the input array", function() {
