@@ -12,6 +12,9 @@ const multiply = (num1, num2) => {
 };
 
 const divide = (num1, num2) => {
+  if(num2 === 0) {
+    return "cannot divide something with 0"
+  }
   return num1 / num2;
 };
 

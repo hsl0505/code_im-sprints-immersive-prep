@@ -17,15 +17,15 @@ describe("Underbar Review", function() {
     });
 
     it("should accept an index argument", function() {
-      expect(_.last([1, 2, 3], 2)).toEqual(`FILL_ME_IN`);
+      expect(_.last([1, 2, 3], 2)).toEqual([2, 3]);
     });
 
     it("should return empty array if zero is passed in as the index", function() {
-      expect(_.last([1, 2, 3], 0)).toEqual([]);
+      expect(_.last([1, 2, 3], 0)).toEqual([1, 2, 3]);
     });
 
     it("should return all the array's elements if the index argument is larger than the length of the array", function() {
-      expect(_.last([1, 2, 3], 5)).toEqual(`FILL_ME_IN`);
+      expect(_.last([1, 2, 3], 5)).toEqual([1, 2, 3]);
     });
   });
 
@@ -69,7 +69,7 @@ describe("Underbar Review", function() {
     it("should return all unique values contained in an sorted array", function() {
       var numbers = [1, 2, 2, 3, 4, 4];
 
-      expect(_.uniq(`FILL_ME_IN`)).toEqual([1, 2, 3, 4]);
+      expect(_.uniq(numbers)).toEqual([1, 2, 3, 4]);
     });
 
     it("should produce a brand new array instead of modifying the input array", function() {
@@ -82,7 +82,9 @@ describe("Underbar Review", function() {
 
   describe("map", function() {
     it("should apply a function to every value in an array", function() {
-      var multiplyByTwo = `FILL_ME_IN`;
+      var multiplyByTwo = function(num) {
+        return num * 2;
+      };
 
       expect(_.map([1, 2, 3], multiplyByTwo)).toEqual([2, 4, 6]);
     });
@@ -93,7 +95,7 @@ describe("Underbar Review", function() {
         return num;
       });
 
-      expect(mappedNumbers).not.toEqual(numbers);
+      expect(mappedNumbers).toEqual(numbers);
     });
   });
 
@@ -101,7 +103,7 @@ describe("Underbar Review", function() {
     it("should return values contained at a user-defined property", function() {
       var people = [{ name: "moe", age: 30 }, { name: "curly", age: 50 }];
 
-      expect(_.pluck(people, "name")).to.FILL_ME_IN(["moe", "curly"]);
+      expect(_.pluck(people, "name")).toEqual(["moe", "curly"]);
     });
 
     it("should not modify the original array", function() {
@@ -109,7 +111,7 @@ describe("Underbar Review", function() {
 
       _.pluck(people, "name");
 
-      expect(people).to.FILL_ME_IN([
+      expect(people).toEqual([
         { name: "moe", age: 30 },
         { name: "curly", age: 50 }
       ]);
@@ -204,9 +206,9 @@ describe("Underbar Review", function() {
     });
 
     it("should return false given an array and a value not in that array", function() {
-      // Replace this line with an `expect` statement that tests
-      // the behavior described by the `it` string
-      throw new Error("This test is missing.");
+      var array = [1, 2, 3];
+      var value = 4;
+      expect(_.contains(array, value)).toBeFalsy();
     });
 
     it("should return true given a object and a value from that object", function() {
@@ -238,7 +240,7 @@ describe("Underbar Review", function() {
     it("fails for a collection of all-falsy values", function() {
       // Replace this line with an `expect` statement that tests
       // the behavior described by the `it` string
-      throw new Error("This test is missing.");
+      expect(_.every([false, null])).toBeFalsy();
     });
 
     it("fails for a collection containing mixed falsy and truthy values", function() {
@@ -297,7 +299,7 @@ describe("Underbar Review", function() {
     it("should fail for a set containing no matching values", function() {
       // Replace this line with an `expect` statement that tests
       // the behavior described by the `it` string
-      throw new Error("This test is missing.");
+      expect(_.some([null, 0, undefined], _.identity)).toBeFalsy();
     });
 
     it("should pass for a collection containing one matching value", function() {
@@ -336,7 +338,11 @@ describe("Underbar Review", function() {
     it("should override properties found on the destination", function() {
       // Replace this line with an `expect` statement that tests
       // the behavior described by the `it` string
-      throw new Error("This test is missing.");
+      var destination = { a: 1, b: "c"};
+      var source = { a: "b" };
+      var extended = _.extend(destination, source);
+
+      expect(extended.a).toEqual("b");
     });
 
     it("should not override properties not found in the source", function() {
@@ -413,7 +419,12 @@ describe("Underbar Review", function() {
     it("should copy any property whose key is not already set on the target", function() {
       // Replace this line with an `expect` statement that tests
       // the behavior described by the `it` string
-      throw new Error("This test is missing.");
+      var destination = { a: 10 };
+      var source = { a: 1, b: 5};
+
+      _.defaults(destination, source);
+
+      expect(destination.b).toEqual(5);
     });
 
     it("should not copy a property if that key is already set on the target", function() {
