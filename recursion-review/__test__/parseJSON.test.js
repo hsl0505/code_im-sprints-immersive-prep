@@ -2,7 +2,7 @@ const parseJSON = require('../src/parseJSON');
 const { parseableStrings, unparseableStrings } = require('./fixtures');
 
 // test cases are described in fixtures.js
-describe.skip('parseJSON', function() {
+describe('parseJSON', function() {
   test('should match the result of calling JSON.parse', () => {
     parseableStrings.forEach(string => {
       let result = parseJSON(string);
