@@ -40,6 +40,7 @@ _.last = function (array, n) {
   }
   return array.slice(-n)
 };
+// [1, 2, 3, 4, 5] n = 2;
 
 // Return all elements of an array that don't pass a truth test.
 _.reject = function (collection, test) {
@@ -53,6 +54,9 @@ _.reject = function (collection, test) {
   }
   return result;
 };
+
+//[1, 2, 3, 4, 5] test = function (a) { reutrn a % === 0}
+//
 
 // Produce a duplicate-free version of the array.
 _.uniq = function (array) {
@@ -80,7 +84,14 @@ _.map = function (collection, iterator) {
 // Takes an array of objects and returns and array of the values of
 // a certain property in it. E.g. take an array of people and return
 // an array of just their ages
-_.pluck = function (collection, key) {
+_.pluck = function(collection, key) {
+
+  let reArr = _.map(collection, function(item){
+    return item[key];
+  })
+
+  return reArr;
+
   // TIP: map is really handy when you want to transform an array of
   // values into a new array of values. _.pluck() is solved for you
   // as an example of this.
@@ -177,7 +188,8 @@ _.every = function (collection, predicate) {
 
 // Determine whether any of the elements pass a truth test. If no iterator is
 // provided, provide a default one
-_.some = function (collection, iterator) {
+_.some = function(collection, iterator) {
+  
   // TIP: There's a very clever way to re-use every() here.
   let result;
 
